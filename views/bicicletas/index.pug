@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    a.btn-info.m-3(href='/bicicletas/create') Nueva Bicicleta
+    table.table.mt-3
+        thead
+            tr
+                th(scape='col') #
+                th(scape='col') Color
+                th(scape='col') Modelo
+                th(scape='col') Ubicación
+                th(scape='col') 
+                th(scape='col') 
+        tbody
+            // Recorro el array pasado desde cotrollers
+            each bici in bicis
+                tr
+                    td(scape='row')= bici.id
+                    td= bici.color
+                    td= bici.modelo
+                    td= bici.ubicacion
+                    td
+                        a(href="bicicletas/"+ bici.id + "/update") Editar
+                    td
+                        form.inline(method="post" action='bicicletas/' + bici.id + '/delete')
+                            input(type="hidden" value=bici.id name="id")
+                            button.btn-dark(type="submit" name="submit_param" value="submit_value")
+                                = "Eliminar"
+
+
